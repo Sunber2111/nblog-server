@@ -6,17 +6,19 @@ namespace Infrastructure.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly ElasticClient _elasticClient;
+        private readonly IElasticClient _elasticClient;
         private readonly string _indexName;
 
-        public GenericRepository(ElasticClient elasticClient)
+        public IElasticClient ElasticClient => _elasticClient;
+
+        public GenericRepository(IElasticClient elasticClient)
         {
             _indexName = typeof(T).Name.ToString().ToLower();
             _elasticClient = elasticClient;
         }
 
         public async Task<bool> Add(T data)
-        {
+        {   
             object id = data.GetType().GetProperty("Id").GetValue(data, null);
 
             if (id == null)
@@ -28,6 +30,7 @@ namespace Infrastructure.Repository
 
             return result.IsValid;
         }
+
     }
 }
 

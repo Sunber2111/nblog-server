@@ -1,25 +1,25 @@
-﻿using Domain;
-using Infrastructure.Repository;
+﻿
+using Application.Blog.Commands;
+using Application.Blog.Queries;
+using Common.ActionStatus;
+using Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class BlogPostController : ControllerBase
+    public class BlogPostController : BaseController
     {
-        private readonly IGenericRepository<BlogPost> _blogPostRepository;
-
-        public BlogPostController(IGenericRepository<BlogPost> blogPostRepository)
-        {
-            _blogPostRepository = blogPostRepository;
-        }
+        [HttpPost("filter")]
+        public async Task<IList<BlogPost>> GetBlogPostByFilter(GetBlogByFilter.Query query)
+            => await Mediator.Send(query);
 
         [HttpPost]
-        public async Task<IActionResult> CreateBlog(BlogPost blogPost)
-        {
-            await _blogPostRepository.Add(blogPost);
-            return Ok();
-        }
+        public async Task<BlogPost> UpSertBlogPost(InsertOrUpdateBlog.Command command)
+            => await Mediator.Send(command);
+
+        [HttpDelete("{id}")]
+        public async Task<AcctionSucces> DeleteBlogPost(string id)
+            => await Mediator.Send(new DeleteBlog.Command { Id = id });
     }
 }
+

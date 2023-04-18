@@ -10,8 +10,8 @@ namespace API.ConfigServices
             var username = configuration["ELKConfiguration:UserName"];
             var password = configuration["ELKConfiguration:Password"];
 
-            var settings = new ConnectionSettings(new Uri(url)).BasicAuthentication(username,password).PrettyJson();
-
+            var settings = new ConnectionSettings(new Uri(url)).PrettyJson();
+            settings.ThrowExceptions(alwaysThrow: true);
             var client = new ElasticClient(settings);
 
             services.AddSingleton<IElasticClient>(client);

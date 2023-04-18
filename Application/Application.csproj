@@ -9,15 +9,22 @@
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="BlogPost\" />
-    <None Remove="BlogPost\Commands\" />
-    <None Remove="BlogPost\Queries\" />
+    <None Remove="BlogCategory\" />
+    <None Remove="BlogCategory\Commands\" />
+    <None Remove="BlogCategory\Queries\" />
+    <None Remove="Blog\Queries\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BlogPost\" />
-    <Folder Include="BlogPost\Commands\" />
-    <Folder Include="BlogPost\Queries\" />
+    <Folder Include="BlogCategory\" />
+    <Folder Include="BlogCategory\Commands\" />
+    <Folder Include="BlogCategory\Queries\" />
+    <Folder Include="Blog\Queries\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
   </ItemGroup>
 </Project>

@@ -1,10 +1,13 @@
 ﻿using System;
+using Nest;
+
 namespace Domain
 {
     public class BlogPost
     {
         public Guid Id { get; set; }
 
+        [Keyword]
         public Guid CategoryId { get; set; }
 
         public string Title { get; set; }

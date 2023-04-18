@@ -12,4 +12,7 @@
   <ItemGroup>
     <Folder Include="Enums\" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NEST" Version="7.17.5" />
+  </ItemGroup>
 </Project>
